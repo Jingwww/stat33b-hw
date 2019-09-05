@@ -62,7 +62,6 @@ Debug: Result is `r frac3`.
 5. A percentile is the value at which a given percentage of samples fall at or below it and is sometimes synonomously called a quantile, e.g., the 90th percentile is the value at which 90% of data values fall at or below it. Calculate the 90th percentile of `normSamps` and assign this value to `per90`. 
 Hint: The `quantile()` function is helpful for this question.
 ```{r}
-# Replace the 1 on the right hand side of the equation with your code
 per90 = quantile(normSamps, probs=c(0.9))
 ```
 
@@ -70,9 +69,10 @@ Debug: Result is `r per90`.
 
 6. Calculate the greatest absolute distance from 1 for the values in `normSamps`. Assign this value to a variable called `maxDev`, short for "maximum deviation" from the mean. Hint: The functions abs() and max() are helpful for this question.
 ```{r}
-# Replace the 1 on the right hand side of the equation with your code
-maxDev = 1
+maxDev = max(abs(normSamps - 1))
 ```
+
+Debug: Result is `r maxDev`.
 
 ## Working with Vectors
 
@@ -83,14 +83,17 @@ load(url("http://www.stat.berkeley.edu/users/nolan/data/afamily.rda"))
 
 7. Calculate `bmi` from `fheight` and `fweight` by dividing weight in pounds by height in inches squared and multiplying by a conversion factor of 703. Assign this to `bmi_alt`
 ```{r}
-# Replace the 1 on the right hand side of the equation with your code
-bmi_alt = 1
+bmi_alt = 703 * fweight / (fheight^2)
 ```
+
+Debug: Result is `r bmi_alt`.
 
 8. Check that `fbmi` and `bmi_alt` match using the functions `==` and `all()`
 ```{r}
-
+isMatch = all(fbmi == bmi_alt)
 ```
+
+Debug: Result is `r isMatch`, because fbmi is `r fbmi`.
 
 9. Suppose that as long as the entries in `bmi_alt` and `fbmi` are within 0.1 of each other, then we consider these two to be equivalent. 
 Calculate the differences and assign it to `bmi_diff`.  
@@ -99,15 +102,16 @@ Produce a logical vector of length 1 called `bmi_same`
 that is TRUE if the entries in `bmi_alt` and `fbmi` are 
 within 0.1 of each other.
 ```{r}
-bmi_diff = 1
-
-bmi_same = 1
+bmi_diff = abs(fbmi - bmi_alt)
+bmi_same = all(bmi_diff < 0.1)
 ```
+
+Debug: bmi_diff is `r bmi_diff`, and bmi_same is `r bmi_same`.
 
 10. Create a vector of last names for the family members, called `flast`. The values should be `Smith` for each entry.
 Hint: use `rep()` and `length()` to do this.
 ```{r}
-flast = 1
+flast = rep('Smith', length(fbmi))
 ```
 
-
+Debug: flast is `r flast`.
